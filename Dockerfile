@@ -1,5 +1,5 @@
 # Use a Python base image
-FROM python:3.11-slim-bookworm
+FROM python:3.13.6-slim-bookworm
 
 # Set environment variables
 ENV PYTHONUNBUFFERED 1

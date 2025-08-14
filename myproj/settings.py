@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-s-y&4qdeav@mlz*&h#im#23*xu!)ffkp(i%7!an(&132vz&sv-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -79,9 +80,9 @@ DATABASES = {
         # 'NAME': BASE_DIR / 'db.sqlite3',
       'ENGINE': 'django.db.backends.postgresql',
       'NAME': 'myproj',
-      'USER': 'todd',
-      'PASSWORD': 'todd06',
-      'HOST': 'db',  # Or your PostgreSQL server's IP/hostname
+      'USER': os.environ.get('PGUSER','todd'),
+      'PASSWORD': os.environ.get('PGPASSWORD','todd06'),
+      'HOST': os.environ.get('PGHOST','localhost'), # Or your PostgreSQL server's IP/hostname
          
     }
 }

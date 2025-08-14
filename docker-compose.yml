@@ -7,8 +7,8 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       POSTGRES_DB: myproj
-      POSTGRES_USER: todd
-      POSTGRES_PASSWORD: todd06
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWO}
 
   web:
     build: .
