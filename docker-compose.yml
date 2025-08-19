@@ -1,26 +1,26 @@
-version: '3.8'
-
-services:
+services: 
   db:
     image: postgres:15
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+    
     environment:
-      POSTGRES_DB: myproj
-      POSTGRES_USER: ${PGUSER}
-      POSTGRES_PASSWORD: ${PGPASSWO}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
-  web:
+  web: 
     build: .
-    command: gunicorn myproj.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
       - static_volume:/app/static
-      - media_volume:/app/media
-    expose:
-      - 8000
+      - media_volume:/app/media      
+    ports: 
+      - '8000:8000'
+    
     env_file:
       - .env # For Django settings like SECRET_KEY, DATABASE_URL etc.
+    
     depends_on:
       - db
 
